@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>north577</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+
+
+<body>
+   <header>
+    <marquee>
+        <p>welcome to slugs world!!!</p><p>enjoy.........</p>
+    </marquee>
+    </header>
+    <!----
+    <div id="leaves">
+        <img src="assets/side1.png" alt="Leaves">
+    </div>
+    <div id="leaves2">
+        <img src="assets/side1.png" alt="Leaves">
+    </div>
+    --->
+    <main>
+            <div class="row">
+             <div class="main1">
+                <img src="assets/wpoa.png">
+                <div id="SLUG">
+                <img src="assets/Animation.gif">    
+            </div>
+            </div>
+                
+
+             <div class="main2">
+                <div class="main2-marquee">
+                    <div class="main2-marquee-track">
+                        <img src="assets/result(1).jpg" alt="one chance">
+                    </div>
+                </div>
+                <img src="assets/broo.png" alt="Image 2">
+                <button class="floating-button1">Art</button>
+                <a href="blog.html" class="floating-button2">Blog</a>
+                
+            </div>
+            </div>
+            
+        <section class="mainthing2">
+
+            
+            <div id="featured">
+                <img src="assets/featured.gif" alt="Image 3">
+            </div> 
+
+
+         <div id="row2">
+    <div class="row2-card">
+        <img src="assets/woe2.png" alt="Image 1">
+    </div>
+
+    <div class="row2-card">
+        <img src="assets/cutebaby.png" alt="Image 2">
+    </div>
+
+    <div class="row2-card">
+        <img src="assets/eeden.png" alt="Image 3">
+    </div>
+<!-----
+    <div class="row2-card">
+        <img src="assets/sticker_7.png" alt="Image 4">
+    </div>
+-->
+</div>
+</section>
+
+<div id="image-modal" class="image-modal">
+    <div class="image-modal-content">
+        <img src="" alt="Preview">
+    </div>
+</div>
+
+        
+    </main>
+
+   
+
+
+    <footer>
+        <p></p>
+    </footer>
+
+<script>
+    const row2Images = document.querySelectorAll('#row2 img');
+    const imageModal = document.getElementById('image-modal');
+    const imageModalImg = imageModal.querySelector('img');
+
+    row2Images.forEach(img => {
+        img.addEventListener('click', event => {
+            event.stopPropagation();
+            imageModalImg.src = img.src;
+            imageModal.classList.add('open');
+        });
+    });
+
+    imageModal.addEventListener('click', event => {
+        if (event.target === imageModal || event.target === imageModalImg) {
+            imageModal.classList.remove('open');
+        }
+    });
+
+    document.addEventListener('click', event => {
+        if (imageModal.classList.contains('open') && !imageModal.contains(event.target)) {
+            imageModal.classList.remove('open');
+        }
+    });
+</script>
+</body>
+</html>

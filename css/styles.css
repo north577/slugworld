@@ -1,0 +1,384 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image:
+    linear-gradient(rgba(0, 0, 0, 0.596), rgba(0, 0, 0, 0.137)),
+    url('../assets/20260725_232757.jpg');
+    position: relative;
+}
+
+#leaves{
+    position: absolute;
+    top: -2px;
+    left: 0;
+    background-size: cover;
+    z-index: 90;
+    filter: drop-shadow(0 0 0.75rem rgb(17, 97, 1));
+}
+
+
+#leaves img {
+    max-width: 20%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+
+}
+
+
+#leaves2{
+    position: absolute;
+    top: -2px;
+    right: -550px;
+    background-size: cover;
+    z-index: 90;
+    filter: drop-shadow(0 0 0.75rem rgb(17, 97, 1));
+}
+
+#leaves2 img {
+    max-width: 20%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    transform: scaleX(-1);
+}
+
+
+header {
+    background-color: rgba(0, 0, 0, 0.589);
+    padding: 4px ;
+    text-align: center;
+}
+
+p {
+    color: #00ff15;
+    font-size: 10px;
+    line-height: 1;
+}
+
+#SLUG {
+    position: absolute;
+    top: -3%;
+    left: 1%;
+    transform: translateX(-50%) rotate(-30deg);
+    z-index: 99;
+    transform: rotate(-6deg);
+    filter: drop-shadow(0 0 0.75rem rgb(0, 0, 0));
+}
+
+#SLUG img {
+    max-width: 55%;
+    height: auto;
+    display: block;
+}
+
+#SLUG:hover {
+    opacity:0.8;
+}
+ 
+
+
+
+/* MY BEAUTIFUL LANDING COLUMN */
+.row {
+    position: relative;
+    display: flex;
+    gap: 9px;
+    align-items: stretch;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 120px;
+    padding-right: 120px;
+    height: 86vh;
+}
+
+.main1 {
+    width: 1900px;
+    max-height: 1000px;
+    border: 2px solid rgba(0, 255, 21, 0.295);
+    background-color:rgb(1, 248, 83);
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+}
+
+.main1 img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+
+
+
+.main2{
+  width: 900px;
+  max-height: 1000px;
+  height: auto;
+  min-height: 100%;
+  border: 2px solid rgba(0, 255, 21, 0.5);
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.main2 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.floating-button1 {
+    position: absolute;
+    top: 22%;
+    left: 34%;
+    transform: translateX(-50%) rotate(-23deg);
+    z-index: 99;
+    width: 250px;
+    height: 250px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    background-image: url('../assets/artbutton.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    color: transparent;
+    cursor: pointer;
+    font-size: 0;
+    overflow: hidden;
+}
+.floating-button1:hover {
+    filter: drop-shadow(0 0 0.75rem rgb(43, 255, 0));
+}
+
+.floating-button2 {
+    position: absolute;
+    bottom: 20%;
+    left: 60%;
+    transform: translateX(-50%) rotate(23deg);
+    z-index: 99;
+    width: 230px;
+    height: 230px;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    background-image: url('../assets/base20.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    color: transparent;
+    cursor: pointer;
+    font-size: 0;
+    overflow: hidden;
+    box-shadow: none;
+}
+.floating-button2:hover {
+    filter: drop-shadow(0 0 0.75rem rgb(43, 255, 0));
+}
+.main2-marquee {
+    position: absolute;
+    left: 0;
+    right: 0;
+    z-index: 101;
+    overflow: hidden;
+    background: rgb(28, 255, 255);
+    white-space: nowrap;
+}
+
+.main2-marquee-track {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding-left: 100%;
+    animation: main2-marquee-scroll 14s linear infinite;
+}
+
+.main2-marquee img {
+    width: auto;
+    max-height: 78px;
+    object-fit: cover;
+    display: block;
+}
+
+.main2-marquee span {
+    font-size: 16px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+
+}
+
+@keyframes main2-marquee-scroll {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+/*******************************/
+.mainthing2 {
+    position: relative;
+    overflow: visible;
+    margin-top: 3px;
+    padding-top: 2rem;
+}
+
+#featured {
+    position: absolute;
+    top: -3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(30vw, 560px);
+    max-width: calc(100% - 2rem);
+    z-index: 10;
+    pointer-events: none;
+
+}
+
+#featured img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+
+#row2 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 120px;
+    padding-right: 120px;
+    margin-top: 30px;
+    height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y proximity;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    z-index: 1;
+    
+    scrollbar-width: auto;
+    scrollbar-color: rgba(0, 255, 21, 0.8) transparent;
+}
+
+#row2::-webkit-scrollbar {
+    width: 20px;
+}
+
+#row2::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#row2::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 255, 21, 0.8);
+    border-radius: 999px;
+    border: 8px solid rgba(0, 0, 0, 0.2);
+}
+
+#row2 .row2-card {
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+    border: 2px solid rgba(0, 255, 21, 0.5);
+    background-color: rgba(2, 2, 2, 0.5);
+    padding: 8px;
+}
+
+
+
+#row2 img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.image-modal {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 9999;
+    padding: 1rem;
+}
+
+.image-modal.open {
+    display: flex;
+}
+
+.image-modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: hidden;
+    border: 2px solid rgba(0, 255, 21, 0.8);
+    border-radius: 12px;
+}
+
+.image-modal-content img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+
+
+
+/*************************/
+
+
+
+.comicbutton:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 21, 0.8),
+                0 0 30px rgba(0, 255, 21, 0.4);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+nav {
+    margin: 20px 0;
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 0px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background-color:rgba(0, 0, 0, 0.5);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
