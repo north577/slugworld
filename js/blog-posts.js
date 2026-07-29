@@ -2,7 +2,7 @@ const posts = [
   {
     title: 'EVERYONE LOVES ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
     date: '2026-07-28',
-    content: '<h3>this is a very good test.</h3><br><img src="/assets/crispy-air-fryer-onion-rings-recipe-0775.jpg"><br> yay<br> yaygkjdflshgiufdkghjefsihulghsuiedguhfil im retarrrdedddddddddddddd yayaayayayayay 2200c jidfogkliuhgofejhyuetrwykuthrfdytruawesJ FgyukaJSDuihlgkfrdeshiugltrsd gukyhitu467b8y8ol hrtiugxf'
+    content: '<h3>this is a very good test.</h3><br><img src="https://raw.githubusercontent.com/north577/slugworld/refs/heads/main/assets/crispy-air-fryer-onion-rings-recipe-0775.jpg"><br> yay<br> yaygkjdflshgiufdkghjefsihulghsuiedguhfil im retarrrdedddddddddddddd yayaayayayayay 2200c jidfogkliuhgofejhyuetrwykuthrfdytruawesJ FgyukaJSDuihlgkfrdeshiugltrsd gukyhitu467b8y8ol hrtiugxf'
   },
 {title: 'Doing this from my phone!!',
 date: '2026-07-28',
