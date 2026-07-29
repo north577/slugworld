@@ -7,8 +7,7 @@ const posts = [
   {
     title: 'the night of',
     date: '2026-07',
-    content: 'testing\ the syntax *this* freaking silly **AWESOME** >>>shit  
-      #yes'
+    content: 'testing\ the syntax *this* freaking silly **AWESOME** >>>shit'
   },
 ];
 
