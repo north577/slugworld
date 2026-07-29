@@ -2,16 +2,9 @@ const posts = [
   {
     title: 'EVERYONE LOVES ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
     date: '2026-07-28',
-    content: '<h3>this is a very good test.</h3><br><img src="https://raw.githubusercontent.com/north577/slugworld/refs/heads/main/assets/crispy-air-fryer-onion-rings-recipe-0775.jpg"><br> yay<br> yaygkjdflshgiufdkghjefsihulghsuiedguhfil im retarrrdedddddddddddddd yayaayayayayay 2200c jidfogkliuhgofejhyuetrwykuthrfdytruawesJ FgyukaJSDuihlgkfrdeshiugltrsd gukyhitu467b8y8ol hrtiugxf'
-  },
-{title: 'Doing this from my phone!!',
-date: '2026-07-28',
-content: '<h4>Super exciting that i can now sperg about whatever i want right from the comfort of my magic rectangle 🥹</h4>'
-}
+    content: '### this is a very good test.\n\n![crispy onion rings](assets/crispy-air-fryer-onion-rings-recipe-0775.jpg)\n\nThis is a **great** test post with *emphasis* and a [link](https://example.com).'
+  }
 ];
-
-
-
 
 function escapeHtml(text) {
   return text
@@ -20,6 +13,51 @@ function escapeHtml(text) {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+function markdownToHtml(markdown) {
+  let html = escapeHtml(markdown);
+
+  html = html
+    .replace(/```([\s\S]*?)```/g, (_, code) => `<pre><code>${code}</code></pre>`)
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>');
+
+  const lines = html.split('\n');
+  const blocks = [];
+  let paragraph = [];
+
+  const flushParagraph = () => {
+    if (!paragraph.length) return;
+
+    const text = paragraph.join('<br>');
+    blocks.push(`<p>${text}</p>`);
+    paragraph = [];
+  };
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+
+    if (!trimmed) {
+      flushParagraph();
+      return;
+    }
+
+    if (/^#{1,3}\s+/.test(trimmed)) {
+      flushParagraph();
+      const level = trimmed.match(/^#+/)[0].length;
+      const content = trimmed.replace(/^#{1,3}\s+/, '');
+      const headingLevel = Math.min(level, 3);
+      blocks.push(`<h${headingLevel}>${content}</h${headingLevel}>`);
+    } else {
+      paragraph.push(trimmed);
+    }
+  });
+
+  flushParagraph();
+  return blocks.join('');
 }
 
 function renderPosts() {
@@ -56,14 +94,7 @@ function renderPosts() {
       fullHtml = contentMarkup;
       previewHtml = contentMarkup.replace(/<img[^>]*>/gi, '');
     } else {
-      fullHtml = escapeHtml(contentMarkup)
-        .replace(/\n\n/g, '</p><p>')
-        .replace(/\n/g, '<br>');
-
-      if (!fullHtml.startsWith('<p>')) {
-        fullHtml = `<p>${fullHtml}</p>`;
-      }
-
+      fullHtml = markdownToHtml(contentMarkup);
       previewHtml = fullHtml;
     }
 
