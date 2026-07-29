@@ -9,6 +9,7 @@ const posts = [
     date: '2026-07',
     content: 'testing\ the syntax *this* freaking silly **AWESOME** >>>shit  
       #yes'
+  },
 ];
 
 function escapeHtml(text) {
