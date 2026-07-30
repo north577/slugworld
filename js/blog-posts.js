@@ -3,7 +3,12 @@ const posts = [
     title: 'EVERYONE LOVES ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
     date: '2026-07-28',
     content: '### this is a very good test.\n\n![crispy onion rings](assets/crispy-air-fryer-onion-rings-recipe-0775.jpg)\n\nThis is a **great** test post with *emphasis* and a [link](https://example.com).'
-  }
+  },
+ {
+    title: 'the night of',
+    date: '2026-07',
+    content: 'testing\ the syntax *this* freaking silly **AWESOME** >>>shit'
+  },
 ];
 
 function escapeHtml(text) {
