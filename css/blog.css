@@ -5,7 +5,20 @@ body {
     background-image:
     linear-gradient(rgba(0, 0, 0, 0.596), rgba(0, 0, 0, 0.137)),
     url('../assets/20260725_232757.jpg');
+    background-size: cover;
+    background-attachment: fixed;
     position: relative;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 header {
@@ -33,10 +46,33 @@ nav a {
 
 nav a:hover {
     text-decoration: underline;
+    text-shadow: 0 0 8px rgba(0, 255, 21, 0.9);
+}
+
+a:hover {
+    text-shadow: 0 0 8px rgba(0, 255, 21, 0.9);
 }
 
 main {
     padding: 20px;
+}
+
+@media (max-width: 700px) {
+    main {
+        padding: 12px;
+    }
+
+    .post-card {
+        padding: 16px;
+    }
+
+    .post-title {
+        font-size: 20px;
+    }
+
+    .post-content p {
+        font-size: 13px;
+    }
 }
 
 #blog-posts {
@@ -50,6 +86,12 @@ main {
     padding: 20px;
     margin-bottom: 20px;
     border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(0, 255, 21, 0.3);
 }
 
 .post-title {
@@ -63,6 +105,24 @@ main {
     color: #b8ffbe;
 }
 
+.post-excerpt {
+    margin: 0 0 12px;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #d8ffd8;
+}
+
+.post-read-more {
+    display: inline-block;
+    color: #00ff15;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.post-read-more:hover {
+    text-decoration: underline;
+}
+
 .post-content p {
     margin: 0 0 10px;
     font-size: 14px;
@@ -70,10 +130,34 @@ main {
 }
 
 .post-content img {
-    max-width: 80%;
+    display: block;
+    max-width: 25%;
     height: auto;
-    margin-top: 10px;
+    margin: 12px auto;
     border-radius: 6px;
+}
+
+.post-preview-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0 0 10px;
+}
+
+.post-preview-image {
+    display: block;
+    width: 92px;
+    height: 92px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.post-detail-card {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #00ff15;
+    padding: 24px;
+    border-radius: 8px;
 }
 
 .post-preview,

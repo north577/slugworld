@@ -2,11 +2,11 @@ const posts = [
   {
     title: 'EVERYONE LOVES ME!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',
     date: '2026-07-28',
-    content: '### this is a very good test.\n\n![crispy onion rings](assets/crispy-air-fryer-onion-rings-recipe-0775.jpg)\n\nThis is a **great** test post with *emphasis* and a [link](https://example.com).'
+    content: '### this is a very good test.\n\n![](assets/crispy-air-fryer-onion-rings-recipe-0775.jpg)\n\n![](assets/slug favorite.jpg)This is a **great** test post with *emphasis* and a [link](https://example.com).'
   },
    {
     title: 'the night of',
-    date: '2026-07',
+    date: '2026-07-29',
     content: 'testing\ the syntax *this* freaking silly **AWESOME** >>>shit'
   },
 ];
@@ -25,7 +25,7 @@ function markdownToHtml(markdown) {
 
   html = html
     .replace(/```([\s\S]*?)```/g, (_, code) => `<pre><code>${code}</code></pre>`)
-    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" loading="lazy" decoding="async">')
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.+?)\*/g, '<em>$1</em>');
@@ -65,6 +65,34 @@ function markdownToHtml(markdown) {
   return blocks.join('');
 }
 
+function stripMarkdown(text = '') {
+  return text
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '$1')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
+    .replace(/#{1,6}\s?/g, '')
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/\*(.+?)\*/g, '$1')
+    .replace(/[`>]/g, '')
+    .replace(/\n+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function getExcerpt(text = '', maxLength = 200) {
+  const plainText = stripMarkdown(text);
+  if (plainText.length <= maxLength) return plainText;
+  return `${plainText.slice(0, maxLength).trimEnd()}...`;
+}
+
+function getImageUrls(text = '') {
+  const matches = [...text.matchAll(/!\[([^\]]*)\]\(([^)]+)\)/g)];
+  return matches.map((match) => match[2]).slice(0, 5);
+}
+
+function buildPostUrl(postIndex) {
+  return `blog-post.html?id=${postIndex}`;
+}
+
 function renderPosts() {
   const container = document.getElementById('blog-posts');
 
@@ -74,9 +102,11 @@ function renderPosts() {
 
   const reversedPosts = [...posts].reverse();
 
-  reversedPosts.forEach((post) => {
+  reversedPosts.forEach((post, index) => {
     const article = document.createElement('article');
     article.className = 'post-card';
+    article.tabIndex = 0;
+    article.style.cursor = 'pointer';
 
     const title = document.createElement('h2');
     title.className = 'post-title';
@@ -86,57 +116,96 @@ function renderPosts() {
     date.className = 'post-date';
     date.textContent = post.date;
 
-    const content = document.createElement('div');
-    content.className = 'post-content';
+    const excerpt = document.createElement('p');
+    excerpt.className = 'post-excerpt';
+    excerpt.textContent = getExcerpt(post.content || '', 200);
 
-    const contentMarkup = post.content || '';
-    const hasHtml = /<([a-z][\w:-]*)(\s[^>]*)?>/i.test(contentMarkup);
+    const readMore = document.createElement('a');
+    readMore.className = 'post-read-more';
+    readMore.href = buildPostUrl(posts.length - 1 - index);
+    readMore.textContent = 'read more';
 
-    let previewHtml = '';
-    let fullHtml = '';
+    const openPost = () => {
+      window.location.href = buildPostUrl(posts.length - 1 - index);
+    };
 
-    if (hasHtml) {
-      fullHtml = contentMarkup;
-      previewHtml = contentMarkup.replace(/<img[^>]*>/gi, '');
-    } else {
-      fullHtml = markdownToHtml(contentMarkup);
-      previewHtml = fullHtml;
-    }
-
-    const previewText = contentMarkup.replace(/<[^>]+>/g, '').trim();
-    const needsToggle = previewText.length > 220;
-
-    if (needsToggle) {
-      const preview = document.createElement('div');
-      preview.className = 'post-preview';
-      preview.innerHTML = previewHtml.length > 220 ? `${previewHtml.slice(0, 220)}...` : previewHtml;
-
-      const full = document.createElement('div');
-      full.className = 'post-full';
-      full.innerHTML = fullHtml;
-      full.style.display = 'none';
-
-      const toggle = document.createElement('button');
-      toggle.className = 'post-toggle';
-      toggle.textContent = 'Show more';
-      toggle.addEventListener('click', () => {
-        const isHidden = full.style.display === 'none';
-        full.style.display = isHidden ? 'block' : 'none';
-        toggle.textContent = isHidden ? 'Show less' : 'Show more';
-      });
-
-      content.appendChild(preview);
-      content.appendChild(full);
-      content.appendChild(toggle);
-    } else {
-      content.innerHTML = fullHtml;
-    }
+    article.addEventListener('click', openPost);
+    article.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openPost();
+      }
+    });
 
     article.appendChild(title);
     article.appendChild(date);
-    article.appendChild(content);
+    article.appendChild(excerpt);
+
+    const imageUrls = getImageUrls(post.content || '');
+    if (imageUrls.length) {
+      const previewImages = document.createElement('div');
+      previewImages.className = 'post-preview-images';
+
+      imageUrls.forEach((imageUrl, imageIndex) => {
+        const previewImage = document.createElement('img');
+        previewImage.className = 'post-preview-image';
+        previewImage.src = imageUrl;
+        previewImage.alt = `${post.title} preview ${imageIndex + 1}`;
+        previewImage.loading = 'lazy';
+        previewImage.decoding = 'async';
+        previewImages.appendChild(previewImage);
+      });
+
+      article.appendChild(previewImages);
+    }
+
+    article.appendChild(readMore);
     container.appendChild(article);
   });
 }
 
-document.addEventListener('DOMContentLoaded', renderPosts);
+function renderSinglePost() {
+  const container = document.getElementById('post-detail');
+  if (!container) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const postIndex = Number(params.get('id'));
+  const post = posts[postIndex];
+
+  if (!post) {
+    container.innerHTML = '<p>Post not found.</p>';
+    return;
+  }
+
+  const article = document.createElement('article');
+  article.className = 'post-detail-card';
+
+  const title = document.createElement('h1');
+  title.className = 'post-title';
+  title.textContent = post.title;
+
+  const date = document.createElement('p');
+  date.className = 'post-date';
+  date.textContent = post.date;
+
+  const content = document.createElement('div');
+  content.className = 'post-content';
+  content.innerHTML = markdownToHtml(post.content || '');
+
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(content);
+  container.appendChild(article);
+}
+
+function renderBlogContent() {
+  if (document.getElementById('blog-posts')) {
+    renderPosts();
+  }
+
+  if (document.getElementById('post-detail')) {
+    renderSinglePost();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', renderBlogContent);
