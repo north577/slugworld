@@ -225,29 +225,6 @@ p {
     text-transform: uppercase;
 }
 
-#row2 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    justify-content: center;
-    margin: 12px 0;
-}
-
-.row2-card {
-    flex: 1 1 240px;
-    min-width: 180px;
-    border: 2px solid rgba(0, 255, 21, 0.5);
-    overflow: hidden;
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.35);
-}
-
-.row2-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
 @keyframes main2-marquee-scroll {
     from {
         transform: translateX(0);
@@ -416,15 +393,13 @@ p {
     flex-direction: column;
     gap: 12px;
     align-items: stretch;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 120px;
-    padding-right: 120px;
-    margin-top: 30px;
-    height: 70vh;
+    padding: 10px 40px;
+    margin: 30px auto;
+    width: min(50vw);
+    height: 50vh;
     overflow-y: auto;
     overflow-x: hidden;
-    scroll-snap-type: y proximity;
+    scroll-snap-type: y mandatory;
     -webkit-overflow-scrolling: touch;
     box-sizing: border-box;
     z-index: 1;
@@ -434,7 +409,7 @@ p {
 }
 
 #row2::-webkit-scrollbar {
-    width: 20px;
+    width: 16px;
 }
 
 #row2::-webkit-scrollbar-track {
@@ -444,25 +419,24 @@ p {
 #row2::-webkit-scrollbar-thumb {
     background-color: rgba(0, 255, 21, 0.8);
     border-radius: 999px;
-    border: 8px solid rgba(0, 0, 0, 0.2);
+    border: 6px solid rgba(0, 0, 0, 0.2);
 }
 
 #row2 .row2-card {
-    flex: 0 0 auto;
+    flex: 0 0 100%;
+    min-height: calc(50vh - 20px);
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     border: 2px solid rgba(0, 255, 21, 0.5);
     background-color: rgba(2, 2, 2, 0.5);
-    padding: 8px;
+    padding: 6px;
 }
-
-
 
 #row2 img {
     display: block;
     width: 100%;
-    height: auto;
-    max-height: 500px;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
     cursor: pointer;
 }
 
