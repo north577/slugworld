@@ -223,7 +223,29 @@ p {
     font-size: 16px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
+}
 
+#row2 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin: 12px 0;
+}
+
+.row2-card {
+    flex: 1 1 240px;
+    min-width: 180px;
+    border: 2px solid rgba(0, 255, 21, 0.5);
+    overflow: hidden;
+    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.row2-card img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 @keyframes main2-marquee-scroll {
@@ -236,6 +258,10 @@ p {
 }
 
 @media (max-width: 900px) {
+    body {
+        background-attachment: scroll;
+    }
+
     .row {
         flex-direction: column;
         padding: 12px;
@@ -251,40 +277,67 @@ p {
     }
 
     .main1 {
-        min-height: 280px;
+        min-height: 260px;
     }
 
     .main2 {
         min-height: 320px;
     }
 
-    .floating-button1 {
-        width: clamp(110px, 32vw, 160px);
-        height: clamp(110px, 32vw, 160px);
-        top: 20%;
-        left: 50%;
-    }
-
-    .floating-button2 {
-        width: clamp(100px, 30vw, 150px);
-        height: clamp(100px, 30vw, 150px);
-        bottom: 16%;
-        left: 72%;
-    }
-
-    #featured {
+    #SLUG {
         position: relative;
+        top: 0;
+        left: 0;
+        transform: none;
+        margin: 0 auto;
+        width: 75%;
+    }
+
+    .floating-button1,
+    .floating-button2 {
+        position: relative;
+        width: 160px;
+        height: 160px;
         top: auto;
         left: auto;
         transform: none;
-        width: min(70vw, 320px);
-        margin: 0 auto 1rem;
+        margin: 10px auto;
+        display: block;
     }
 
-    #row2 {
-        padding: 12px;
-        height: auto;
-        margin-top: 12px;
+    .main2-marquee {
+        position: relative;
+    }
+}
+
+@media (max-width: 600px) {
+    header,
+    main,
+    footer {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .row {
+        padding: 8px;
+    }
+
+    .main1 {
+        min-height: 220px;
+    }
+
+    .main2 {
+        min-height: 260px;
+    }
+
+    .floating-button1,
+    .floating-button2 {
+        width: 130px;
+        height: 130px;
+    }
+
+    .main2-marquee img {
+        max-height: 60px;
     }
 }
 
@@ -309,18 +362,16 @@ p {
         min-height: 260px;
     }
 
-    .floating-button1 {
-        width: 96px;
-        height: 96px;
-        top: 24%;
-        left: 48%;
-    }
-
+    .floating-button1,
     .floating-button2 {
-        width: 92px;
-        height: 92px;
-        bottom: 12%;
-        left: 72%;
+        width: 160px;
+        height: 160px;
+        margin: 10px auto;
+        display: block;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
     }
 
     .main2-marquee img {

@@ -7,7 +7,7 @@ const posts = [
    {
     title: 'the night of',
     date: '2026-07-29',
-    content: 'testing\ the syntax \n\n*this* freaking silly \n **AWESOME** >>>shit'
+    content: 'testing\ the syntax OF \n\n*this* freaking silly \n **AWESOME** >>>shit'
   },
 ];
 

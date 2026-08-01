@@ -155,14 +155,13 @@ main {
 
 .post-detail-card {
     background-color: rgba(0, 0, 0, 0.7);
+    border:#00ff15 solid 0.5px;
     color: #00ff15;
     padding: 24px;
     border-radius: 8px;
-}
-
-.post-preview,
-.post-full {
-    margin-bottom: 10px;
+    max-width: 2000px;
+    height:auto;
+    margin: 0 auto;
 }
 
 .post-toggle {
